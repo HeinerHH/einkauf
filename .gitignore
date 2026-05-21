@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.firebase/
+*.local
+.env
+.env.local
+.DS_Store
+
+# Setup-Scripts (nur fuer lokale Entwicklung)
+setup.ps1
+fix.ps1
+features.ps1
+household.ps1
+einkauf-setup.ps1
+runspace-debug.log

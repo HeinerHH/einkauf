@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Hintergrund -->
+  <rect width="512" height="512" rx="110" fill="#4f46e5"/>
+
+  <!-- Einkaufswagen (weiss) -->
+  <!-- Griff / Stange -->
+  <line x1="100" y1="150" x2="160" y2="150" stroke="white" stroke-width="30" stroke-linecap="round"/>
+  <!-- Koerper des Wagens -->
+  <path d="M160 150 L200 310 H390 L420 170 Z"
+        fill="none" stroke="white" stroke-width="28"
+        stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Boden des Korbs (geschlossen) -->
+  <line x1="200" y1="310" x2="390" y2="310" stroke="white" stroke-width="28" stroke-linecap="round"/>
+  <!-- Raeder -->
+  <circle cx="235" cy="370" r="32" fill="white"/>
+  <circle cx="235" cy="370" r="14" fill="#4f46e5"/>
+  <circle cx="355" cy="370" r="32" fill="white"/>
+  <circle cx="355" cy="370" r="14" fill="#4f46e5"/>
+</svg>
