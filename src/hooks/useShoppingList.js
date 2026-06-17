@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { doc, onSnapshot, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { sortByStoreOrder } from "../services/orderingService";
+import { groupByCategory } from "../services/categoryService";
 
 export function useShoppingList(householdId) {
   const [items, setItems] = useState([]);
@@ -97,11 +97,9 @@ export function useShoppingList(householdId) {
     return checked;
   };
 
-  const getSortedItems = (storeOrder) => ({
-    unchecked: sortByStoreOrder(
-      items.filter((i) => !i.checked),
-      storeOrder,
-    ),
+  const getSortedItems = () => ({
+    // Offene Artikel nach Kategorien gruppiert (Gemüse, Fleisch/Wurst, …)
+    groups: groupByCategory(items.filter((i) => !i.checked)),
     checked: items
       .filter((i) => i.checked)
       .sort((a, b) => (a.checkOrder ?? 0) - (b.checkOrder ?? 0)),

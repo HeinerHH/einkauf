@@ -25,25 +25,30 @@ export default function ShoppingList({
 
   if (loading) return <div className="loading">{"\u{23F3}"}</div>;
 
-  const { unchecked, checked } = getSortedItems(activeStore?.itemOrder ?? {});
+  const { groups, checked } = getSortedItems();
 
   return (
     <div className="list-container">
-      {!unchecked.length && !checked.length && (
+      {!groups.length && !checked.length && (
         <div className="empty-hint">
           Tippe auf <strong>{PLUS}</strong> um loszulegen {CART}
         </div>
       )}
 
-      {unchecked.map((item) => (
-        <ItemRow
-          key={item.id}
-          item={item}
-          onToggle={onToggle}
-          onRemove={onRemove}
-          onEdit={onEdit}
-          onEditQty={onEditQty}
-        />
+      {groups.map((group) => (
+        <div key={group.id} className="category-group">
+          <div className="category-header">{group.label}</div>
+          {group.items.map((item) => (
+            <ItemRow
+              key={item.id}
+              item={item}
+              onToggle={onToggle}
+              onRemove={onRemove}
+              onEdit={onEdit}
+              onEditQty={onEditQty}
+            />
+          ))}
+        </div>
       ))}
 
       {checked.length > 0 && (

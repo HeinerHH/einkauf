@@ -637,6 +637,19 @@ body {
     line-height: 1.6;
 }
 
+/* ── Kategorie-Gruppen ── */
+.category-group {
+    margin-top: 4px;
+}
+.category-header {
+    padding: 12px 16px 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 /* ── Item Row ── */
 .item-row {
     display: flex;
