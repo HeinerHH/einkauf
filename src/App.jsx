@@ -77,6 +77,35 @@ export default function App() {
 
   useEffect(() => onAuthStateChanged(auth, (u) => setUser(u ?? null)), []);
 
+  // Deeplink aus anderen Apps (z. B. MealSnap): ?add=Artikel[,Artikel2] → zur Liste
+  // hinzufuegen, sobald Haushalt geladen ist, dann Parameter aus der URL entfernen.
+  useEffect(() => {
+    if (!householdId) return;
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get("add");
+    if (!raw) return;
+    const names = raw
+      .split(/[,;\n]/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    (async () => {
+      for (const n of names) {
+        try {
+          await addItem(n);
+        } catch {
+          /* einzelnen Fehler ignorieren */
+        }
+      }
+    })();
+    params.delete("add");
+    const q = params.toString();
+    window.history.replaceState(
+      {},
+      "",
+      window.location.pathname + (q ? "?" + q : ""),
+    );
+  }, [householdId]);
+
   // Markt wählen (manuell oder nach GPS-Erkennung)
   const handleSelectStore = (s) => setActiveStoreId(s?.id ?? null);
 
